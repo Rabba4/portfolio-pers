@@ -11,7 +11,7 @@ export const translations = {
     },
     hero: {
       greeting: "Hola, soy",
-      name: "Tu Nombre",
+      name: "Rubén Borrajo",
       role: "Desarrollador Full Stack",
       description:
         "Especializado en desarrollo de ERP, aplicaciones web y soluciones empresariales con más de 9 años de experiencia.",
