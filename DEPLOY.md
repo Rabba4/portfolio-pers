@@ -3,12 +3,14 @@
 ## Configuración del proyecto en Coolify
 
 ### 1. Crear nuevo recurso en Coolify
+
 1. Ve a tu panel de Coolify en la Raspberry Pi
 2. Crea un nuevo recurso de tipo "Application"
 3. Selecciona "Public Repository" o conecta tu cuenta de GitHub
 4. Usa el repositorio: `https://github.com/[tu-usuario]/[tu-repo]`
 
 ### 2. Configuración de variables de entorno
+
 En Coolify, agrega las siguientes variables de entorno:
 
 ```
@@ -18,6 +20,7 @@ PORT=4321
 ```
 
 ### 3. Configuración del puerto
+
 - **Puerto de la aplicación**: 4321
 - **Puerto público**: El que prefieras (ej: 80, 443, o cualquier otro)
 
@@ -29,12 +32,14 @@ PORT=4321
 - **Base Directory**: `/` (raíz del proyecto)
 
 ### 5. Healthcheck (Opcional pero recomendado)
+
 ```
 Healthcheck URL: /
 Healthcheck Method: GET
 ```
 
 ### 6. Dominio (Opcional)
+
 Puedes configurar un dominio personalizado en la sección de dominios de Coolify.
 
 ## Notas importantes
@@ -65,6 +70,7 @@ git push
 ## Troubleshooting
 
 Si el despliegue falla:
+
 1. Verifica los logs en Coolify
 2. Asegúrate de que todas las variables de entorno estén configuradas
 3. Verifica que el puerto 4321 esté disponible
