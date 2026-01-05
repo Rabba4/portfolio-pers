@@ -132,7 +132,7 @@ export const translations = {
     },
     hero: {
       greeting: "Hi, I'm",
-      name: "Your Name",
+      name: "Rubén Borrajo",
       role: "Full Stack Developer",
       description:
         "Specialized in ERP development, web applications and enterprise solutions with over 9 years of experience.",

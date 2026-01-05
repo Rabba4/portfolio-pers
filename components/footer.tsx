@@ -17,15 +17,14 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               © {currentYear}{" "}
               <Link href="/" className="hover:text-foreground transition-colors">
-                {"<Dev/>"}
+                {"<RB/>"}
               </Link>
               . {t.footer.rights}.
             </p>
 
             {/* Made with */}
             <p className="text-sm text-muted-foreground flex items-center gap-1">
-              {t.footer.madeWith} <Heart className="h-4 w-4 text-primary fill-primary" />{" "}
-              {locale === "es" ? "y" : "and"} Next.js
+              {t.footer.madeWith} <Heart className="h-4 w-4 text-primary fill-primary" />
             </p>
           </div>
         </div>

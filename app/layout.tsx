@@ -5,6 +5,8 @@ import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/components/language-provider"
 import { Navbar } from "@/components/navbar"
+import { ScrollProgress } from "@/components/animations/scroll-progress"
+import { BackToTop } from "@/components/animations/back-to-top"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -55,8 +57,10 @@ export default function RootLayout({
       <body className={`${inter.className} ${jetbrainsMono.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <LanguageProvider>
+            <ScrollProgress />
             <Navbar />
             {children}
+            <BackToTop />
           </LanguageProvider>
         </ThemeProvider>
         <Analytics />
