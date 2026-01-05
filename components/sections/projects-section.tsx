@@ -17,22 +17,22 @@ export function ProjectsSection() {
     {
       ...t.projects.items.erp,
       icon: Database,
-      image: "/enterprise-erp-dashboard-software-dark-theme.jpg",
+      image: "/imagen-erp.webp",
     },
     {
       ...t.projects.items.ecommerce,
       icon: ShoppingCart,
-      image: "/modern-ecommerce-website-product-page.jpg",
+      image: "/ecommerce-moda.webp",
     },
     {
       ...t.projects.items.hrPortal,
       icon: Users,
-      image: "/hr-management-dashboard-employee-portal.jpg",
+      image: "/hr-resources-management.webp",
     },
     {
       ...t.projects.items.integrations,
       icon: Link2,
-      image: "/api-integration-diagram-connecting-systems.jpg",
+      image: "/api-integration-diagram.webp",
     },
   ]
 
