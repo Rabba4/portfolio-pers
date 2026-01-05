@@ -30,7 +30,7 @@ export function HeroSection() {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.21, 0.47, 0.32, 0.98],
+        ease: [0.21, 0.47, 0.32, 0.98] as const,
       },
     },
   }
@@ -53,7 +53,7 @@ export function HeroSection() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 text-balance"
           >
             <motion.span
-              className="inline-block bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent bg-[length:200%_auto]"
+              className="inline-block bg-linear-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent bg-[length:200%_auto]"
               animate={{
                 backgroundPosition: ["0% center", "200% center", "0% center"],
               }}
@@ -101,7 +101,7 @@ export function HeroSection() {
             </MagneticButton>
             <MagneticButton>
               <Button variant="outline" size="lg" asChild>
-                <Link href="#about">{t.hero.downloadCV}</Link>
+                <Link href="/CV_Ruben_Borrajo.pdf" download>{t.hero.downloadCV}</Link>
               </Button>
             </MagneticButton>
           </motion.div>
