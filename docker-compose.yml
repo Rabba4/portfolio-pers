@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  portfolio:
+    image: ghcr.io/rabba4/portfolio-pers:latest
+    container_name: portfolio-pers
+    restart: unless-stopped
+    ports:
+      - "4321:4321"
+    environment:
+      - NODE_ENV=production
+      - PORT=4321
+      - HOSTNAME=0.0.0.0
+      - RESEND_API_KEY=${RESEND_API_KEY}
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4321"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
