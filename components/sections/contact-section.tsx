@@ -22,15 +22,45 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus("idle")
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    // Guardar referencia al formulario antes de la operación asíncrona
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      message: formData.get('message') as string,
+    }
 
-    setIsSubmitting(false)
-    setSubmitStatus("success")
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
-    // Reset status after 3 seconds
-    setTimeout(() => setSubmitStatus("idle"), 3000)
+      if (!response.ok) {
+        throw new Error('Error al enviar el mensaje')
+      }
+
+      setSubmitStatus("success")
+      // Limpiar el formulario usando la referencia guardada
+      form.reset()
+
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus("idle"), 5000)
+    } catch (error) {
+      console.error('Error:', error)
+      setSubmitStatus("error")
+      
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus("idle"), 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
