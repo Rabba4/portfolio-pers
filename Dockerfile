@@ -9,9 +9,8 @@ WORKDIR /app
 
 # Instalar dependencias basadas en el gestor de paquetes preferido
 COPY package.json package-lock.json* ./
-# Instalar solo dependencias de producción y limpiar caché para ahorrar memoria
-RUN npm ci --omit=dev --ignore-scripts && \
-    npm cache clean --force
+# Instalar todas las dependencias (necesarias para el build)
+RUN npm ci && npm cache clean --force
 
 # Reconstruir el código fuente solo cuando sea necesario
 FROM base AS builder
