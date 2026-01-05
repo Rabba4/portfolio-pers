@@ -7,7 +7,7 @@ import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-c
 import { motion } from "framer-motion"
 
 export function StackSection() {
-  const { t } = useLanguage()
+  const { t, locale } = useLanguage()
 
   const techStack = {
     backend: [
@@ -109,7 +109,7 @@ export function StackSection() {
           <ScrollReveal delay={0.4}>
             <div className="mt-12 text-center">
               <p className="text-muted-foreground text-sm max-w-2xl mx-auto">
-                {t.locale === "es"
+                {locale === "es"
                   ? "Además de estas tecnologías, tengo experiencia en metodologías ágiles, integración continua y despliegue automatizado."
                   : "In addition to these technologies, I have experience in agile methodologies, continuous integration and automated deployment."}
               </p>
