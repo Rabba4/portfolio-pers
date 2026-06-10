@@ -64,7 +64,12 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-24 sm:py-32">
+    <section id="contact" className="py-24 sm:py-32 relative overflow-hidden">
+      {/* Decorative background blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/8 rounded-full blur-2xl" />
+      </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -85,7 +90,7 @@ export function ContactSection() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <ScrollReveal direction="left">
-              <Card className="bg-card/50 backdrop-blur-sm">
+              <Card className="bg-card/60 backdrop-blur-md border-primary/15 shadow-xl shadow-primary/5">
                 <CardContent className="p-6">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <motion.div
@@ -101,7 +106,7 @@ export function ContactSection() {
                         name="name"
                         required
                         placeholder={locale === "es" ? "Tu nombre" : "Your name"}
-                        className="bg-background"
+                        className="bg-background/50 border-border/60 focus:border-primary/50 focus:bg-background transition-colors"
                       />
                     </motion.div>
 
@@ -119,7 +124,7 @@ export function ContactSection() {
                         type="email"
                         required
                         placeholder={locale === "es" ? "tu@email.com" : "you@email.com"}
-                        className="bg-background"
+                        className="bg-background/50 border-border/60 focus:border-primary/50 focus:bg-background transition-colors"
                       />
                     </motion.div>
 
@@ -139,7 +144,7 @@ export function ContactSection() {
                         placeholder={
                           locale === "es" ? "Cuéntame sobre tu proyecto..." : "Tell me about your project..."
                         }
-                        className="bg-background resize-none"
+                        className="bg-background/50 border-border/60 focus:border-primary/50 focus:bg-background transition-colors resize-none"
                       />
                     </motion.div>
 
@@ -149,7 +154,7 @@ export function ContactSection() {
                       transition={{ delay: 0.4 }}
                       viewport={{ once: true }}
                     >
-                      <Button type="submit" className="w-full group" disabled={isSubmitting}>
+                      <Button type="submit" className="w-full group hover:shadow-lg hover:shadow-primary/25 transition-all duration-300" disabled={isSubmitting}>
                         {isSubmitting ? (
                           <span className="flex items-center gap-2">
                             <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
@@ -187,7 +192,7 @@ export function ContactSection() {
                   </h3>
 
                   <div className="space-y-4">
-                    <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 300 }}>
+                    <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 300 }} className="bg-primary/5 rounded-xl p-4">
                       <Link
                         href="mailto:rbi1957@gmail.com?subject=Consulta%20sobre%20servicios%20de%20desarrollo&body=Estimado%20profesional%2C%0A%0AMe%20pongo%20en%20contacto%20con%20usted%20para%20explorar%20la%20posibilidad%20de%20colaborar%20en%20un%20proyecto%20de%20desarrollo.%0A%0ADetalles%20del%20proyecto%3A%0A-%20Tipo%20de%20soluci%C3%B3n%3A%20%5BWeb%2FApp%2FSistema%2FOtro%5D%0A-%20Descripci%C3%B3n%20breve%3A%20%0A-%20Plazo%20estimado%3A%20%0A-%20Presupuesto%20aproximado%3A%20%0A%0AQuedo%20a%20la%20espera%20de%20su%20respuesta%20para%20coordinar%20una%20reuni%C3%B3n%20y%20discutir%20los%20detalles.%0A%0AAtentamente%2C%0A%5BTu%20nombre%5D"
                         className="flex items-center gap-4 text-muted-foreground hover:text-foreground transition-colors group"
@@ -206,7 +211,7 @@ export function ContactSection() {
                       </Link>
                     </motion.div>
 
-                    <div className="flex items-center gap-4 text-muted-foreground">
+                    <div className="flex items-center gap-4 text-muted-foreground bg-primary/5 rounded-xl p-4">
                       <div className="p-3 rounded-lg bg-muted">
                         <MapPin className="h-5 w-5" />
                       </div>
