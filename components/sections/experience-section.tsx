@@ -41,8 +41,11 @@ export function ExperienceSection() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <ScrollReveal>
-            <div className="flex items-center gap-4 mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">{t.experience.title}</h2>
+            <div className="flex items-center gap-4 mb-12 relative">
+              <span className="absolute -top-6 -left-2 text-8xl font-black text-primary/6 select-none leading-none pointer-events-none">
+                02
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground relative z-10">{t.experience.title}</h2>
               <motion.div
                 className="flex-1 h-px bg-border"
                 initial={{ scaleX: 0 }}
