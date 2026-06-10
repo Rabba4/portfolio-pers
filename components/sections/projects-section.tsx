@@ -10,6 +10,18 @@ import { ScrollReveal } from "@/components/animations/scroll-reveal"
 import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-container"
 import { motion } from "framer-motion"
 
+const statusConfig = {
+  production: { label: "En producción", dot: "bg-emerald-500", text: "text-emerald-600 dark:text-emerald-400" },
+  demo: { label: "Demo", dot: "bg-blue-500", text: "text-blue-600 dark:text-blue-400" },
+  archived: { label: "Archivado", dot: "bg-gray-400", text: "text-gray-500" },
+}
+
+const categoryBorder = {
+  backend: "border-l-primary/60",
+  frontend: "border-l-blue-400/60",
+  fullstack: "border-l-purple-400/60",
+}
+
 export function ProjectsSection() {
   const { t } = useLanguage()
 
@@ -18,21 +30,29 @@ export function ProjectsSection() {
       ...t.projects.items.erp,
       icon: Database,
       image: "/imagen-erp.webp",
+      status: "production" as const,
+      category: "backend" as const,
     },
     {
       ...t.projects.items.ecommerce,
       icon: ShoppingCart,
       image: "/ecommerce-moda.webp",
+      status: "production" as const,
+      category: "frontend" as const,
     },
     {
       ...t.projects.items.hrPortal,
       icon: Users,
       image: "/hr-resources-management.webp",
+      status: "demo" as const,
+      category: "fullstack" as const,
     },
     {
       ...t.projects.items.integrations,
       icon: Link2,
       image: "/api-integration-diagram.webp",
+      status: "demo" as const,
+      category: "backend" as const,
     },
   ]
 
@@ -63,7 +83,7 @@ export function ProjectsSection() {
               {projects.map((project, index) => (
                 <StaggerItem key={index}>
                   <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 300 }}>
-                    <Card className="group overflow-hidden hover:border-primary/50 transition-all duration-300 bg-card hover:shadow-xl hover:shadow-primary/5 h-full">
+                    <Card className={`group overflow-hidden border-l-4 ${categoryBorder[project.category]} hover:border-primary/50 transition-all duration-300 bg-card hover:shadow-xl hover:shadow-primary/5 h-full`}>
                       {/* Project Image with parallax effect */}
                       <div className="relative h-48 overflow-hidden bg-muted">
                         <motion.img
@@ -78,7 +98,16 @@ export function ProjectsSection() {
                           initial={{ opacity: 0 }}
                           whileHover={{ opacity: 1 }}
                           transition={{ duration: 0.3 }}
-                        />
+                        >
+                          {/* Tags in overlay */}
+                          <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
+                            {project.tags.map((tag, i) => (
+                              <Badge key={i} variant="secondary" className="text-xs font-mono bg-background/80 backdrop-blur-sm">
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
+                        </motion.div>
 
                         {/* Icon Badge with rotation animation */}
                         <motion.div
@@ -88,6 +117,12 @@ export function ProjectsSection() {
                         >
                           <project.icon className="h-5 w-5 text-primary" />
                         </motion.div>
+
+                        {/* Status badge */}
+                        <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-background/90 backdrop-blur-sm rounded-full px-2.5 py-1 text-xs font-medium">
+                          <span className={`w-1.5 h-1.5 rounded-full ${statusConfig[project.status].dot}`} />
+                          <span className={statusConfig[project.status].text}>{statusConfig[project.status].label}</span>
+                        </div>
                       </div>
 
                       <CardHeader className="pb-2">
@@ -98,21 +133,6 @@ export function ProjectsSection() {
                       </CardHeader>
 
                       <CardContent className="space-y-4">
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-2">
-                          {project.tags.map((tag, i) => (
-                            <motion.div
-                              key={i}
-                              whileHover={{ scale: 1.1 }}
-                              transition={{ type: "spring", stiffness: 400 }}
-                            >
-                              <Badge variant="secondary" className="text-xs font-mono">
-                                {tag}
-                              </Badge>
-                            </motion.div>
-                          ))}
-                        </div>
-
                         {/* Actions */}
                         <div className="flex gap-2 pt-2">
                           <motion.div className="flex-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
