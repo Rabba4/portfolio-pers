@@ -59,7 +59,7 @@ export function ExperienceSection() {
           {/* Timeline */}
           <div className="relative">
             {/* Vertical Line - static background */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border/30 md:-translate-x-1/2" />
+            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent md:-translate-x-1/2" />
 
             {/* Animated Vertical Line */}
             <motion.div
@@ -67,7 +67,7 @@ export function ExperienceSection() {
               style={{ height: lineHeight }}
             />
 
-            <div className="space-y-12">
+            <div className="space-y-16">
               {experiences.map((exp, index) => (
                 <ScrollReveal key={index} delay={index * 0.15} direction={index % 2 === 0 ? "left" : "right"}>
                   <div
@@ -76,15 +76,34 @@ export function ExperienceSection() {
                     }`}
                   >
                     {/* Timeline Node with pulse animation */}
-                    <motion.div
-                      className="absolute left-0 md:left-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background md:-translate-x-1/2 z-10 mt-6"
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ delay: index * 0.15 + 0.3, type: "spring", stiffness: 200 }}
-                      viewport={{ once: true }}
-                    >
-                      <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20" />
-                    </motion.div>
+                    {index === 0 ? (
+                      <motion.div
+                        className="absolute left-0 md:left-1/2 w-5 h-5 bg-primary rounded-full border-4 border-background md:-translate-x-1/2 z-10 mt-5 shadow-lg shadow-primary/30"
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        transition={{ delay: index * 0.15 + 0.3, type: "spring", stiffness: 200 }}
+                        viewport={{ once: true }}
+                      >
+                        <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20" />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        className="absolute left-0 md:left-1/2 w-4 h-4 bg-primary/40 rounded-full border-2 border-primary/60 md:-translate-x-1/2 z-10 mt-5.5"
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        transition={{ delay: index * 0.15 + 0.3, type: "spring", stiffness: 200 }}
+                        viewport={{ once: true }}
+                      />
+                    )}
+
+                    {/* Year label - visible en md+ */}
+                    <div className={`hidden md:flex absolute left-1/2 ${
+                      index % 2 === 0 ? 'translate-x-4' : '-translate-x-full -ml-4'
+                    } mt-4 items-center`}>
+                      <span className="text-xs font-mono text-primary/60 bg-primary/5 px-2 py-0.5 rounded-full border border-primary/20 whitespace-nowrap">
+                        {exp.period.split('–')[0].trim()}
+                      </span>
+                    </div>
 
                     {/* Content */}
                     <div className={`flex-1 pl-8 md:pl-0 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
@@ -138,10 +157,13 @@ export function ExperienceSection() {
 
             {/* Years indicator */}
             <ScrollReveal delay={0.5}>
-              <div className="flex justify-center mt-12">
-                <Badge variant="secondary" className="font-mono text-sm px-4 py-2">
-                  9+ {" "} {locale === "es" ? "años de experiencia" : "years of experience"}
-                </Badge>
+              <div className="flex justify-center mt-16">
+                <div className="inline-flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-full px-6 py-3">
+                  <span className="text-2xl font-black text-primary">9+</span>
+                  <span className="text-sm font-medium text-muted-foreground">
+                    {locale === "es" ? "años de experiencia" : "years of experience"}
+                  </span>
+                </div>
               </div>
             </ScrollReveal>
           </div>
